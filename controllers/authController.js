@@ -1,8 +1,10 @@
 const { BadRequestError, UnauthenticatedError } = require('../errors');
+const CustomError = require('../errors');
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const { attachCookiesToResponse, createTokenUser } = require('../utils');
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcryptjs');
 
 const register = async (req, res) => {
   const { fullName, username, email, phone, country, password } = req.body;
@@ -127,10 +129,10 @@ const sendEmail = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"FxRealTrade" <ebubeofforjoe@gmail.com>`,
+    from: `"TrexHolding" <trexholding539@gmail.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
-    html: `<a href="http://localhost:5200/resetPassword?id=${id}">Click this link to reset your password </a>`,
+    html: `<a href="http://localhost:5173/resetPassword?id=${id}">Click this link to reset your password </a>`,
   });
 
   res.status(StatusCodes.OK).json({ user, info });
