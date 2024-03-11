@@ -38,7 +38,7 @@ app.use(fileUpload({ useTempFiles: true }));
 app.use(
   cors({
     credentials: true,
-    origin: 'https://trex-holding-server.onrender.com',
+    origin: 'http://localhost:5173',
   })
 );
 app.use('/api/v1/auth', authRouter);
