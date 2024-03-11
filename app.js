@@ -35,7 +35,7 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static('./public'));
 app.use(fileUpload({ useTempFiles: true }));
 
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/deposit', depositRouter);
 app.use('/api/v1/users', userRouter);
