@@ -41,6 +41,12 @@ app.use(
     origin: 'https://trex-holding.netlify.app',
   })
 );
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: 'http://localhost:5173',
+//   })
+// );
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/deposit', depositRouter);
 app.use('/api/v1/users', userRouter);
