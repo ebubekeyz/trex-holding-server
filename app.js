@@ -35,7 +35,12 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static('./public'));
 app.use(fileUpload({ useTempFiles: true }));
 
-app.use(cors({ credentials: true }));
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://trex-holding-server.onrender.com',
+  })
+);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/deposit', depositRouter);
 app.use('/api/v1/users', userRouter);
