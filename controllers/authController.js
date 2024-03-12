@@ -132,7 +132,7 @@ const sendEmail = async (req, res) => {
     from: `"TrexHolding" <trexholding539@gmail.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
-    html: `<a href="http://localhost:5173/resetPassword?id=${id}">Click this link to reset your password </a>`,
+    html: `<a href="https://trex-holding.netlify.app/resetPassword?id=${id}">Click this link to reset your password </a>`,
   });
 
   res.status(StatusCodes.OK).json({ user, info });
