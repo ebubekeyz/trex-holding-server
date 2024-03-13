@@ -18,9 +18,10 @@ const attachCookiesToResponse = ({ res, user }) => {
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
-    secure: process.env.NODE_ENV === 'production',
+    // secure: process.env.NODE_ENV === 'production',
+    secure: true,
     signed: true,
-    sameSite: 'Strict',
+    sameSite: 'Lax',
   });
 };
 
