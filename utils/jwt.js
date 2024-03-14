@@ -30,7 +30,7 @@ const attachCookiesToResponse = ({ res, user }) => {
     secure: process.env.NODE_ENV === 'production',
     domain: 'https://trex-holding.netlify.app',
     signed: true,
-    sameSite: 'Lax',
+    sameSite: 'None',
   });
 };
 
