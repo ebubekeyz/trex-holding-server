@@ -27,7 +27,7 @@ const attachCookiesToResponse = ({ res, user }) => {
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
-    domain: 'https://trex-holding-server.onrender.com',
+
     signed: true,
     sameSite: 'None',
   });
