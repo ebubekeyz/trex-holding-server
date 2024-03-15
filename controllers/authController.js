@@ -7,7 +7,17 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 
 const register = async (req, res) => {
-  const { fullName, username, email, phone, country, password } = req.body;
+  const {
+    fullName,
+    username,
+    email,
+    phone,
+    country,
+    password,
+    city,
+    zip,
+    state,
+  } = req.body;
   const emailAlreadyExist = await User.findOne({ email });
   if (emailAlreadyExist) {
     throw new BadRequestError('Email already exist');
@@ -24,6 +34,9 @@ const register = async (req, res) => {
     country,
     password,
     role,
+    city,
+    zip,
+    state,
   });
 
   const tokenUser = createTokenUser(user);

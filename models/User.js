@@ -7,15 +7,13 @@ const UserSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: ['true', 'Please provide your fullName'],
     },
     username: {
       type: String,
-      required: ['true', 'Please provide your phone username'],
     },
     email: {
       type: String,
-      required: [true, 'Please provide a valid email'],
+      required: [true, 'Please provide your email'],
       validate: {
         validator: validator.isEmail,
         message: 'Please provide valid email',
@@ -24,11 +22,18 @@ const UserSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: ['true', 'Please provide your phone number'],
     },
     country: {
       type: String,
-      required: ['true', 'Please provide your country'],
+    },
+    city: {
+      type: String,
+    },
+    zip: {
+      type: Number,
+    },
+    state: {
+      type: String,
     },
     password: {
       type: String,

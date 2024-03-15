@@ -59,7 +59,6 @@ app.get('/api/coins', async (req, res) => {
     'https://coinlib.io/api/v1/coinlist?key=6cb4aca8259d352f&pref=USD&page=1&order=volume_desc'
   );
   const data = await response.json();
-  console.log(data);
 
   res.json(data);
 });

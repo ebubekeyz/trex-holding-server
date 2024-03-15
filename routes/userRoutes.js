@@ -22,11 +22,12 @@ router
     getAllUsers
   );
 router.route('/showMe').get(authenticateUser, showCurrentUser);
-router.route('/updateUser').patch(authenticateUser, updateUser);
+// router.route('/updateUser').patch(authenticateUser, updateUser);
 router.route('/updateUserPassword').patch(authenticateUser, updateUserPassword);
 router
   .route('/:id')
   .get(authenticateUser, getSingleUser)
+  .patch(authenticateUser, updateUser)
   .delete([authenticateUser, authenticatePermissions('admin')], deleteUser);
 
 module.exports = router;

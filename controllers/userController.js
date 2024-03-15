@@ -35,6 +35,9 @@ const updateUser = async (req, res) => {
     username,
     phone,
     country,
+    city,
+    zip,
+    state,
     email,
     bitcoinAddress,
     etherumAddress,
@@ -47,24 +50,32 @@ const updateUser = async (req, res) => {
     dogeCoinAddress,
   } = req.body;
 
-  const user = await User.findOne({ _id: req.user.userId });
-
-  user.fullName = fullName;
-  user.username = username;
-  user.phone = phone;
-  user.country = country;
-  user.email = email;
-  user.bitcoinAddress = bitcoinAddress;
-  user.etherumAddress = etherumAddress;
-  user.usdtTrc2Address = usdtTrc2Address;
-  user.bitcoinCashAddress = bitcoinCashAddress;
-  user.liteCoinAddress = liteCoinAddress;
-  user.bnbAddress = bnbAddress;
-  user.tronAddress = tronAddress;
-  user.xrpAddress = xrpAddress;
-  user.dogeCoinAddress = dogeCoinAddress;
-
-  await user.save();
+  const user = await User.findOneAndUpdate(
+    { _id: req.user.userId },
+    {
+      fullName,
+      username,
+      phone,
+      city,
+      zip,
+      state,
+      country,
+      email,
+      bitcoinAddress,
+      etherumAddress,
+      usdtTrc2Address,
+      bitcoinCashAddress,
+      liteCoinAddress,
+      bnbAddress,
+      tronAddress,
+      xrpAddress,
+      dogeCoinAddress,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
 
   const tokenUser = createTokenUser(user);
 
@@ -72,20 +83,6 @@ const updateUser = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
-// const updateUser = async (req, res) => {
-//     const {{fullName, username, phone, country, email, bitcoinAddress, etherumAddress, usdtTrc2Address, bitcoinCashAddress, liteCoinAddress, bnbAddress, tronAddress, xrpAddress, dogeCoinAddress  } = req.body
-
-//     const user = await User.findOneAndUpdate({_id: req.user.userId}, {fullName, username, phone, country, email, bitcoinAddress, etherumAddress, usdtTrc2Address, bitcoinCashAddress, liteCoinAddress, bnbAddress, tronAddress, xrpAddress, dogeCoinAddress  }, {
-//         new: true,
-//         runValidators: true
-//     })
-
-//     const tokenUser = createTokenUser(user)
-
-//     attachCookiesToResponse({res, user: tokenUser})
-
-//     res.status(StatusCodes.OK).json({user: tokenUser})
-// }
 const updateUserPassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   if (!oldPassword || !newPassword) {
