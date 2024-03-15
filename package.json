@@ -29,6 +29,7 @@
     "nanoid": "^5.0.6",
     "nodemailer": "^6.9.11",
     "uuid": "^9.0.1",
+    "uuid4": "^2.0.3",
     "validator": "^13.11.0",
     "xss-clean": "^0.1.4"
   },

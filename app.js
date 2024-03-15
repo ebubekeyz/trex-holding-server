@@ -11,6 +11,7 @@ const connectDB = require('./db/connect');
 const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/authRoutes');
+const withdrawRouter = require('./routes/withdrawRoutes');
 const contactRouter = require('./routes/contactRoutes');
 const depositRouter = require('./routes/depositRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -35,20 +36,21 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static('./public'));
 app.use(fileUpload({ useTempFiles: true }));
 
-app.use(
-  cors({
-    credentials: true,
-    origin: 'https://trex-holding.netlify.app',
-  })
-);
 // app.use(
 //   cors({
 //     credentials: true,
-//     origin: 'http://localhost:5173',
+//     origin: 'https://trex-holding.netlify.app',
 //   })
 // );
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:5173',
+  })
+);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/deposit', depositRouter);
+app.use('/api/v1/withdraw', withdrawRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/contact', contactRouter);
 
