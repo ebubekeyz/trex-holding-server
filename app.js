@@ -11,7 +11,9 @@ const connectDB = require('./db/connect');
 const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/authRoutes');
+const receiptRouter = require('./routes/receiptRoutes');
 const withdrawRouter = require('./routes/withdrawRoutes');
+const amountRouter = require('./routes/amountRoutes');
 const contactRouter = require('./routes/contactRoutes');
 const depositRouter = require('./routes/depositRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -30,7 +32,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
+
 app.use(express.json());
+
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static('./public'));
@@ -49,7 +53,9 @@ app.use(
 //   })
 // );
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/receipt', receiptRouter);
 app.use('/api/v1/deposit', depositRouter);
+app.use('/api/v1/amount', amountRouter);
 app.use('/api/v1/withdraw', withdrawRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/contact', contactRouter);
