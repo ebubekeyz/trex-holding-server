@@ -34,8 +34,8 @@ const WithdrawSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['pending', 'success'],
-      default: 'pending',
+      enum: ['processing', 'sent'],
+      default: 'processing',
     },
     currentBalance: {
       type: Number,

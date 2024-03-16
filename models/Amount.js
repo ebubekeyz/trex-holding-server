@@ -6,6 +6,11 @@ const AmountSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['pending', 'confirmed'],
+      default: 'pending',
+    },
 
     user: {
       type: mongoose.Types.ObjectId,

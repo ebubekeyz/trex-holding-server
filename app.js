@@ -11,6 +11,7 @@ const connectDB = require('./db/connect');
 const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/authRoutes');
+const payReceiptRouter = require('./routes/payReceiptRoutes');
 const receiptRouter = require('./routes/receiptRoutes');
 const withdrawRouter = require('./routes/withdrawRoutes');
 const amountRouter = require('./routes/amountRoutes');
@@ -53,6 +54,7 @@ app.use(
 //   })
 // );
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/payReceipt', payReceiptRouter);
 app.use('/api/v1/receipt', receiptRouter);
 app.use('/api/v1/deposit', depositRouter);
 app.use('/api/v1/amount', amountRouter);

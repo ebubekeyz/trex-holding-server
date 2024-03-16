@@ -7,7 +7,7 @@ const uploadReceipt = async (req, res) => {
     throw new CustomError.BadRequestError('No File Uploaded');
   }
   const receipt = req.files.image;
-  console.log(receipt);
+
   if (!receipt.mimetype.startsWith('image')) {
     throw new CustomError.BadRequestError('Please Upload Image');
   }

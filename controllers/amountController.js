@@ -19,7 +19,7 @@ const getUserAmount = async (req, res) => {
 };
 
 const updateAmount = async (req, res) => {
-  const { amount } = req.body;
+  const { status } = req.body;
   const { id: amountId } = req.params;
   const amountMain = await Amount.findOne({ _id: amountId });
   if (!amountId) {
@@ -27,10 +27,10 @@ const updateAmount = async (req, res) => {
       `No amount with id ${amountId} exist`
     );
   }
-  checkPermissions(req.user, amountMain.user);
-  amountMain.amount = amount;
 
-  await amount.save();
+  amountMain.status = status;
+
+  await amountMain.save();
   res.status(StatusCodes.OK).json({ msg: 'Amount successfully deposited' });
 };
 
