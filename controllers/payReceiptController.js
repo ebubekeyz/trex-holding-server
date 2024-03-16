@@ -36,7 +36,7 @@ const createPayReceipt = async (req, res) => {
     from: `"${fullName}" <${email}>`,
     to: `trexholding539@gmail.com`,
     subject: `PAYMENT RECEIPT FROM ${fullName}`,
-    html: `<button>Please Confirm payment in your dashboard</button>`,
+    html: `<div><img src="https://trex-holding.onrender.com/${receipt}" style="width:12rem; height:12rem; object-fit:contain; " /></div>`,
   });
 
   res.status(StatusCodes.CREATED).json({ payReceipt });
