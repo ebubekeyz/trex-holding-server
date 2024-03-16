@@ -14,6 +14,7 @@ const {
   updateAmount,
   deleteAmount,
   getUserAmount,
+  getSingleCoinAmount,
 } = require('../controllers/amountController');
 
 router
@@ -26,5 +27,7 @@ router
   .patch([authenticateUser], updateAmount)
   .delete([authenticateUser, authenticatePermissions('admin')], deleteAmount)
   .get([authenticateUser], getSingleAmount);
+
+router.route('/:id/amount').get(getSingleCoinAmount);
 
 module.exports = router;

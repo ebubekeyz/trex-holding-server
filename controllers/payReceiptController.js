@@ -5,13 +5,20 @@ const CustomError = require('../errors');
 const nodemailer = require('nodemailer');
 
 const createPayReceipt = async (req, res) => {
+  const { amount: amountId } = req.body;
+
+  const isValidAmount = await Amount.findOne({ _id: amountId });
+
+  if (!isValidAmount) {
+    throw new CustomError.NotFoundError(`No amount with id ${amountId}`);
+  }
   req.body.user = req.user.userId;
   const payReceipt = await PayReceipt.create(req.body);
 
   const amount = await Amount.find({ user: req.user.userId });
 
-  let { status, _id: amountId } = amount[amount.length - 1];
-  console.log(status, amountId);
+  let { status, _id: amountId2 } = amount[amount.length - 1];
+  console.log(status, amountId2);
   const handleAmount = () => {
     status = 'confirmed';
   };
@@ -43,7 +50,15 @@ const createPayReceipt = async (req, res) => {
 };
 
 const getAllPayReceipt = async (req, res) => {
-  const payReceipt = await PayReceipt.find({});
+  const payReceipt = await PayReceipt.find({})
+    .populate({
+      path: 'amount',
+      select: 'amount status coin',
+    })
+    .populate({
+      path: 'user',
+      select: 'fullName',
+    });
   res.status(StatusCodes.OK).json({ payReceipt, count: payReceipt.length });
 };
 

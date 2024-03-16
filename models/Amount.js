@@ -11,6 +11,10 @@ const AmountSchema = new mongoose.Schema(
       enum: ['pending', 'confirmed'],
       default: 'pending',
     },
+    coin: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Coin',
+    },
 
     user: {
       type: mongoose.Types.ObjectId,

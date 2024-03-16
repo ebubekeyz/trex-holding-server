@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 
-const PayReceiptSchema = new mongoose.Schema(
+const CoinSchema = new mongoose.Schema(
   {
-    receipt: {
+    coinType: {
       type: String,
-      required: true,
     },
-    amount: {
+
+    invest: {
       type: mongoose.Types.ObjectId,
-      ref: 'amount',
+      ref: 'Invest',
       required: true,
     },
+
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
@@ -20,4 +21,4 @@ const PayReceiptSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('PayReceipt', PayReceiptSchema);
+module.exports = mongoose.model('Coin', CoinSchema);
