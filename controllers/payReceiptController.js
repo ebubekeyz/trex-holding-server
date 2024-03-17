@@ -50,7 +50,10 @@ const createPayReceipt = async (req, res) => {
 };
 
 const getAllPayReceipt = async (req, res) => {
-  const payReceipt = await PayReceipt.find({});
+  const payReceipt = await PayReceipt.find({}).populate({
+    path: 'user',
+    select: 'fullName',
+  });
 
   res.status(StatusCodes.OK).json({ payReceipt, count: payReceipt.length });
 };
